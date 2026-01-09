@@ -30,38 +30,15 @@ function typeText() {
 // MUSIC FADE
 function fadeInMusic() {
   music.volume = 0;
-
-  music.play().catch(() => {
-    console.log("Audio blocked until user interaction");
-  });
-
+  music.play();
   let v = 0;
   const fade = setInterval(() => {
     if (v < 0.8) {
       v += 0.02;
       music.volume = v;
-    } else {
-      clearInterval(fade);
-    }
+    } else clearInterval(fade);
   }, 200);
 }
-
-function startApp() {
-  fadeInMusic();
-  showHer(); // your existing logic
-}
-
-
-let musicStarted = false;
-
-function startApp() {
-  if (!musicStarted) {
-    fadeInMusic();
-    musicStarted = true;
-  }
-  showHer();
-}
-
 
 // BUTTON ACTIONS
 function showHer() {
@@ -129,31 +106,18 @@ style.innerHTML = `
 }`;
 document.head.appendChild(style);
 
-const music = document.getElementById("bgMusic");
 
 
-// COUNTDOWN – change this date to when you’ll see her
-const seeHerDate = new Date("2026-01-25T00:00:00");
-let countdownStarted = false;
-
-function startCountdown() {
-  if (countdownStarted) return;
-  countdownStarted = true;
-
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-}
+// COUNTDOWN – change the date you’ll see her
+const seeHerDate = new Date("2026-01-26T00:00:00");
 
 function updateCountdown() {
   const now = new Date();
   const diff = seeHerDate - now;
 
-  const countdown = document.getElementById("countdown");
-
   if (diff <= 0) {
-    countdown.innerHTML =
-      `<span class="pink">NOW 💖</span>
-       <span class="blue">Priscilla, I’m right here</span>`;
+    document.getElementById("countdown").innerHTML =
+      `<span class="pink">NOW 💖</span>`;
     return;
   }
 
@@ -161,14 +125,12 @@ function updateCountdown() {
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
   const mins = Math.floor((diff / (1000 * 60)) % 60);
 
-  countdown.innerHTML =
+  document.getElementById("countdown").innerHTML =
     `<span class="pink">${days} days</span>
      <span class="blue">${hours} hrs</span>
      <span class="pink">${mins} mins</span>
-     <span class="blue">until I see you, Priscilla 💖</span>`;
+     <span class="blue">until I see you 💙</span>`;
 }
 
-startCountdown();
-
-
-
+setInterval(updateCountdown, 1000);
+updateCountdown();
