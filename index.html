@@ -30,25 +30,22 @@
 
     <div id="countdown" class="countdown"></div>
 
-    <button onclick="showHer()">Tap Me 💫</button>
+    <!-- BUTTONS -->
+    <button onclick="startApp()">Tap Me 💫</button>
     <button class="kiss" onclick="kissUs()">Kiss Me 💋</button>
 
     <div class="photos">
-      <img src="images/her.png">
-      <img src="images/us.png">
+      <img id="herPhoto" src="images/her.png" alt="Her Photo">
+      <img id="usPhoto" src="images/us.png" alt="Us Photo">
     </div>
   </div>
 </div>
 
-<div id="countdown" class="countdown"></div>
-
-
-<audio id="bgMusic" loop>
-  <source src="music.mp3/audio.mp3.mp3" type="audio/mpeg">
+<!-- AUDIO -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="music/audio.mp3" type="audio/mpeg">
 </audio>
 
 <script src="script.js"></script>
 </body>
 </html>
-
-
