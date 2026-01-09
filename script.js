@@ -30,15 +30,38 @@ function typeText() {
 // MUSIC FADE
 function fadeInMusic() {
   music.volume = 0;
-  music.play();
+
+  music.play().catch(() => {
+    console.log("Audio blocked until user interaction");
+  });
+
   let v = 0;
   const fade = setInterval(() => {
     if (v < 0.8) {
       v += 0.02;
       music.volume = v;
-    } else clearInterval(fade);
+    } else {
+      clearInterval(fade);
+    }
   }, 200);
 }
+
+function startApp() {
+  fadeInMusic();
+  showHer(); // your existing logic
+}
+
+
+let musicStarted = false;
+
+function startApp() {
+  if (!musicStarted) {
+    fadeInMusic();
+    musicStarted = true;
+  }
+  showHer();
+}
+
 
 // BUTTON ACTIONS
 function showHer() {
@@ -106,6 +129,7 @@ style.innerHTML = `
 }`;
 document.head.appendChild(style);
 
+const music = document.getElementById("bgMusic");
 
 
 // COUNTDOWN – change this date to when you’ll see her
@@ -145,5 +169,6 @@ function updateCountdown() {
 }
 
 startCountdown();
+
 
 
