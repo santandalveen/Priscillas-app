@@ -108,16 +108,28 @@ document.head.appendChild(style);
 
 
 
-// COUNTDOWN – change the date you’ll see her
-const seeHerDate = new Date("2026-01-26T00:00:00");
+// COUNTDOWN – change this date to when you’ll see her
+const seeHerDate = new Date("2026-01-25T00:00:00");
+let countdownStarted = false;
+
+function startCountdown() {
+  if (countdownStarted) return;
+  countdownStarted = true;
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+}
 
 function updateCountdown() {
   const now = new Date();
   const diff = seeHerDate - now;
 
+  const countdown = document.getElementById("countdown");
+
   if (diff <= 0) {
-    document.getElementById("countdown").innerHTML =
-      `<span class="pink">NOW 💖</span>`;
+    countdown.innerHTML =
+      `<span class="pink">NOW 💖</span>
+       <span class="blue">Priscilla, I’m right here</span>`;
     return;
   }
 
@@ -125,12 +137,13 @@ function updateCountdown() {
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
   const mins = Math.floor((diff / (1000 * 60)) % 60);
 
-  document.getElementById("countdown").innerHTML =
+  countdown.innerHTML =
     `<span class="pink">${days} days</span>
      <span class="blue">${hours} hrs</span>
      <span class="pink">${mins} mins</span>
-     <span class="blue">until I see you 💙</span>`;
+     <span class="blue">until I see you, Priscilla 💖</span>`;
 }
 
-setInterval(updateCountdown, 1000);
-updateCountdown();
+startCountdown();
+
+
