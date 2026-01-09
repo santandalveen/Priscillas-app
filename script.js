@@ -2,18 +2,28 @@ const app = document.getElementById("app");
 const lockScreen = document.getElementById("lockScreen");
 const music = document.getElementById("bgMusic");
 
+let musicStarted = false;
+
 // UNLOCK
 function unlock() {
   const pass = document.getElementById("password").value;
   if (pass.toLowerCase() === "priscilla") {
     lockScreen.style.display = "none";
     app.style.display = "block";
-    fadeInMusic();
     typeText();
     vibrate();
   } else {
     document.getElementById("error").textContent = "Wrong password 💔";
   }
+}
+
+// START APP BUTTON
+function startApp() {
+  if (!musicStarted) {
+    fadeInMusic();
+    musicStarted = true;
+  }
+  showHer();
 }
 
 // TYPING
@@ -30,7 +40,7 @@ function typeText() {
 // MUSIC FADE
 function fadeInMusic() {
   music.volume = 0;
-  music.play();
+  music.play().catch(() => console.log("Audio blocked until user interaction"));
   let v = 0;
   const fade = setInterval(() => {
     if (v < 0.8) {
@@ -106,9 +116,7 @@ style.innerHTML = `
 }`;
 document.head.appendChild(style);
 
-
-
-// COUNTDOWN – change the date you’ll see her
+// COUNTDOWN
 const seeHerDate = new Date("2026-01-26T00:00:00");
 
 function updateCountdown() {
@@ -136,5 +144,3 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 startCountdown();
-
-
