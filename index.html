@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>❤️ For Priscilla ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOCK SCREEN -->
+<div id="lockScreen" class="lock">
+  <h1>❤️</h1>
+  <p>Enter the password</p>
+  <input type="password" id="password" placeholder="Her name...">
+  <button onclick="unlock()">Unlock 💖</button>
+  <p id="error"></p>
+</div>
+
+<!-- APP -->
+<div id="app" class="hidden">
+  <div class="container">
+    <h1 id="typing"></h1>
+
+    <div id="now">
+      <span class="pink">I love you</span>
+      <span class="blue">my baby girl</span>
+      <span class="pink">I miss you</span>
+    </div>
+
+    <div id="countdown" class="countdown"></div>
+
+    <button onclick="showHer()">Tap Me 💫</button>
+    <button class="kiss" onclick="kissUs()">Kiss Me 💋</button>
+
+    <div class="photos">
+      <img id="herPhoto" src="images/Pg.1.JPG">
+      <img id="usPhoto" src="images/Pg.2.jpg">
+    </div>
+  </div>
+</div>
+
+<div id="countdown" class="countdown"></div>
+
+
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>
+
